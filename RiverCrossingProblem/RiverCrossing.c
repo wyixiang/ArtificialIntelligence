@@ -3,11 +3,11 @@
 
 
 
-/*************¶¨ÒåÀàĞÍ****************/
+/*************å®šä¹‰ç±»å‹****************/
 typedef struct state
 {
-	int m;//´«½ÌÊ¿
-	int c;//Ò°ÈË
+	int m;//ä¼ æ•™å£«
+	int c;//é‡äºº
 }node;
 
 typedef struct element
@@ -28,7 +28,7 @@ typedef struct LStack
 
 
 
-/*************Õ»º¯Êı****************/
+/*************æ ˆå‡½æ•°****************/
 
 int InitStack(PLStack *S)
 {
@@ -93,14 +93,14 @@ int problem_get (int *m,int *c,int *b)
 
 
 
-/*************Çó½âº¯Êı****************/
+/*************æ±‚è§£å‡½æ•°****************/
 
 int judge(node strat,int m,int c,int boat_size)
 {
 	int rm,rc;
 	rm=strat.m-m;
 	rc=strat.c-c;
-	if( (m>=c||m==0) && (rm>=rc||rm==0)  )//Çé¿ö·ûºÏ¹æ¶¨ 
+	if( (m>=c||m==0) && (rm>=rc||rm==0)  )//æƒ…å†µç¬¦åˆè§„å®š 
 		return 1;
 	else
 		return 0;
@@ -114,26 +114,26 @@ int findway(node start,int boat_size)
 	int i,j;
 	element elem, e;
 	PLStack S1, S2;
-	InitStack(&S1);//S1Õı³£Ê¹ÓÃ
-	InitStack(&S2);//S2×îºóÓÃÀ´µ¹ĞòS1
+	InitStack(&S1);//S1æ­£å¸¸ä½¿ç”¨
+	InitStack(&S2);//S2æœ€åç”¨æ¥å€’åºS1
 	
 	
-	int maze[start.m+1][start.c+1];  //´´½¨×´Ì¬¼ÇÂ¼£¬±ÜÃâ½øÈëËÀÑ­»· 
+	int maze[start.m+1][start.c+1];  //åˆ›å»ºçŠ¶æ€è®°å½•ï¼Œé¿å…è¿›å…¥æ­»å¾ªç¯ 
 	for (i = 0; i <= start.m; i++)
 			for (j = 0; j <= start.c; j++)
-				maze[i][j]=(!judge(start,i,j,boat_size))*4;//±ê¼Ç²»·ûºÏ¹æ¶¨µÄ×´Ì¬£¨judgeÈ¡·´£© 
+				maze[i][j]=(!judge(start,i,j,boat_size))*4;//æ ‡è®°ä¸ç¬¦åˆè§„å®šçš„çŠ¶æ€ï¼ˆjudgeå–åï¼‰ 
 	
 	
-	maze[start.m][start.c] = 1; //³õÊ¼×´Ì¬×÷ÉÏ±ê¼Ç 
+	maze[start.m][start.c] = 1; //åˆå§‹çŠ¶æ€ä½œä¸Šæ ‡è®° 
 	elem.m = start.m;
 	elem.c = start.c;
 	elem.bm = 0;
 	elem.bc = 0;
 	elem.lb = 1;
 	
-	Push(&S1, elem);//Ñ¹Èë³õÊ¼×´Ì¬ 
+	Push(&S1, elem);//å‹å…¥åˆå§‹çŠ¶æ€ 
 	
-	while (!ifempty(S1)) //Õ»²»Îª¿Õ
+	while (!ifempty(S1)) //æ ˆä¸ä¸ºç©º
 	{
 		Pop(&S1, &elem);
 		m = elem.m;
@@ -144,7 +144,7 @@ int findway(node start,int boat_size)
 		rm = start.m - m;
 		rc = start.c - c;
 
-		 //ÏÂÒ»ÖÖÈËÊıÑ¡Ôñ 
+		 //ä¸‹ä¸€ç§äººæ•°é€‰æ‹© 
 		
 		if(lb==1)
 		{
@@ -152,7 +152,7 @@ int findway(node start,int boat_size)
 			{
 				bm++;
 			}
-			else //if ( elem.bc < boat_size )£¬ÕâÑù³¬½çÊ± bc= boat_size+1
+			else //if ( elem.bc < boat_size )ï¼Œè¿™æ ·è¶…ç•Œæ—¶ bc= boat_size+1
 			{
 				bc++;
 				bm = 0;	
@@ -164,7 +164,7 @@ int findway(node start,int boat_size)
 			{
 				bm++;
 			}
-			else //if ( elem.bc < boat_size )£¬ÕâÑù³¬½çÊ± bc= boat_size+1
+			else //if ( elem.bc < boat_size )ï¼Œè¿™æ ·è¶…ç•Œæ—¶ bc= boat_size+1
 			{
 				bc++;
 				bm = 0;	
@@ -189,7 +189,7 @@ int findway(node start,int boat_size)
 				nbl=1;
 			}
 			
-			/******************Èç¹û´ï³ÉÄ¿±ê********************/
+			/******************å¦‚æœè¾¾æˆç›®æ ‡********************/
 			if (nm == 0 && nc == 0 && nbl == 0)
 			{
 				elem.m = m;
@@ -207,7 +207,7 @@ int findway(node start,int boat_size)
 				Push(&S1, elem);
 				
 				printf("\nreuslts:\n");
-				while (S1) //ÄæÖÃĞòÁĞ ²¢Êä³ö·½°¸Â·¾¶ĞòÁĞ 
+				while (S1) //é€†ç½®åºåˆ— å¹¶è¾“å‡ºæ–¹æ¡ˆè·¯å¾„åºåˆ— 
 				{
 					Pop(&S1, &e);
 					Push(&S2, e);
@@ -231,16 +231,16 @@ int findway(node start,int boat_size)
 			/**************************************/
 			
 			
-			if (maze[nm][nc] == 0 || maze[nm][nc] == lb || maze[nm][nc] == lb+2) //ÕÒµ½¿ÉÒÔ¼ÌĞøµÄ·ÇÄ¿±êµÄ×´Ì¬ 
+			if (maze[nm][nc] == 0 || maze[nm][nc] == lb || maze[nm][nc] == lb+2) //æ‰¾åˆ°å¯ä»¥ç»§ç»­çš„éç›®æ ‡çš„çŠ¶æ€ 
 			{
-				maze[nm][nc] = lb+1; //±ê¼Ç¾­¹ı´Ë×´Ì¬ 
+				maze[nm][nc] = lb+1; //æ ‡è®°ç»è¿‡æ­¤çŠ¶æ€ 
 				elem.m = m;
 				elem.c = c;
 				elem.bm = bm;
 				elem.bc = bc;
 				elem.lb = lb;
-				Push(&S1, elem); //µ±Ç°×´Ì¬ÈëÕ» 
-				m = nm; //ÏÂÒ»×´Ì¬×ª»¯Îªµ±Ç°×´Ì¬ 
+				Push(&S1, elem); //å½“å‰çŠ¶æ€å…¥æ ˆ 
+				m = nm; //ä¸‹ä¸€çŠ¶æ€è½¬åŒ–ä¸ºå½“å‰çŠ¶æ€ 
 				c = nc;
 				bc = 0;
 				bm = 0;
@@ -249,14 +249,14 @@ int findway(node start,int boat_size)
 				rc = start.c - c;
 			}
 			
-			//ÏÂÒ»ÖÖÈËÊıÑ¡Ôñ 
+			//ä¸‹ä¸€ç§äººæ•°é€‰æ‹© 
 			if(lb==1)
 			{
 				if ( bm < boat_size-bc && bm < m )
 				{
 					bm++;
 				}
-				else //if ( elem.bc < boat_size )£¬ÕâÑù³¬½çÊ± bc= boat_size+1
+				else //if ( elem.bc < boat_size )ï¼Œè¿™æ ·è¶…ç•Œæ—¶ bc= boat_size+1
 				{
 					bc++;
 					bm = 0;	
@@ -268,7 +268,7 @@ int findway(node start,int boat_size)
 				{
 					bm++;
 				}
-				else //if ( elem.bc < boat_size )£¬ÕâÑù³¬½çÊ± bc= boat_size+1
+				else //if ( elem.bc < boat_size )ï¼Œè¿™æ ·è¶…ç•Œæ—¶ bc= boat_size+1
 				{
 					bc++;
 					bm = 0;	
