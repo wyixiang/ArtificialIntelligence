@@ -26,7 +26,7 @@ typedef struct nn4_10_3
 	double b1[10], b2[3];
 }*Ptrnn,nn;
 
-//ÎÄ¼ş¶ÁÈ¡
+//æ–‡ä»¶è¯»å–
 int readfile(char *path, dataset *set)
 {
 	int i = 0;
@@ -46,7 +46,7 @@ int readfile(char *path, dataset *set)
 	}
 	return 1;
 }
-//ÍøÂç³õÊ¼»¯
+//ç½‘ç»œåˆå§‹åŒ–
 int InitNet(Ptrnn n)
 {
 	int i, j;
@@ -75,7 +75,7 @@ int InitNet(Ptrnn n)
 	}
 	return 0;
 }
-//ÍøÂçËùÓĞÈ¨Öµ¹éÁã£¨ÅúÁ¿ÏÂ½µÀÛ¼ÓÊ±Ê¹ÓÃ£©
+//ç½‘ç»œæ‰€æœ‰æƒå€¼å½’é›¶ï¼ˆæ‰¹é‡ä¸‹é™ç´¯åŠ æ—¶ä½¿ç”¨ï¼‰
 int ZeroNet(Ptrnn n)
 {
 	int i, j;
@@ -104,7 +104,7 @@ int ZeroNet(Ptrnn n)
 	}
 	return 0;
 }
-//´òÓ¡ËùÓĞÈ¨Öµ
+//æ‰“å°æ‰€æœ‰æƒå€¼
 int printW(Ptrnn n)
 {
 	int i, j;
@@ -137,7 +137,7 @@ int printW(Ptrnn n)
 	printf("\n");
 	return 0;
 }
-//ÑµÁ·Êä³öÄÚ´æ¹éÁã
+//è®­ç»ƒè¾“å‡ºå†…å­˜å½’é›¶
 int Inittrain(double *delta2, double *delta3, double *a, double *h)
 {
 	int i, j;
@@ -153,7 +153,7 @@ int Inittrain(double *delta2, double *delta3, double *a, double *h)
 	}
 	return 0;
 }
-//²âÊÔÄÚ´æ¹éÁã
+//æµ‹è¯•å†…å­˜å½’é›¶
 int Inittest(double *a2, double *h)
 {
 	int i, j;
@@ -167,12 +167,12 @@ int Inittest(double *a2, double *h)
 	}
 	return 0;
 }
-//sigmoidº¯Êı
+//sigmoidå‡½æ•°
 double sigmoid(double z)
 {
 	return 1 / (1 + exp(-z));
 }
-//ÊäÈëÖµ¹éÒ»»¯
+//è¾“å…¥å€¼å½’ä¸€åŒ–
 int minmax_scaling(dataset *set)
 {
 	double min, max;
@@ -223,10 +223,10 @@ int train(Ptrnn n,int time)
 		ZeroNet(&delta);
 		for (Num=0;Num < size_of_data;Num++)
 		{
-			////////////////³õÊ¼»¯
+			////////////////åˆå§‹åŒ–
 			Inittrain(delta2, delta3, a, h);
 
-			///////////////////////ÕıÏò´«²¥
+			///////////////////////æ­£å‘ä¼ æ’­
 			for (i = 0; i < 10; i++)
 			{
 				z = 0;
@@ -249,7 +249,7 @@ int train(Ptrnn n,int time)
 				h[i] = sigmoid(z);
 			}
 
-			////////////////////////¼ÆËãÈ¨ÖØĞŞ¸ÄÖµ
+			////////////////////////è®¡ç®—æƒé‡ä¿®æ”¹å€¼
 			for (i = 0; i < 3; i++)
 			{
 				delta3[i] = -(y[set[Num].label][i] - h[i])  *  (h[i] * (1 - h[i]));
@@ -292,7 +292,7 @@ int train(Ptrnn n,int time)
 			}
 		}
 
-		///////////////ĞŞ¸ÄÈ¨Öµ
+		///////////////ä¿®æ”¹æƒå€¼
 		for (i = 0; i < 10; i++)
 		{
 			for (j = 0; j < 4; j++)
