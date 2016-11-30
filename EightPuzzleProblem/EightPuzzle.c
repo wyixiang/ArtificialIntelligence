@@ -1,8 +1,7 @@
-
 #include<stdio.h> 
 #include<stdlib.h> 
 
-/****************¶¨ÒåÀàĞÍ***************/
+/****************å®šä¹‰ç±»å‹***************/
 typedef struct fc   //figure coordinate
 {
 	int x;
@@ -25,7 +24,7 @@ typedef struct List
 typedef ListNodePtr List,*ListPtr;
 /*******************************/
 
-/****************¶¨ÒåÁ´±íº¯Êı***************/
+/****************å®šä¹‰é“¾è¡¨å‡½æ•°***************/
 int ListInit(ListPtr PL)
 {
 	*PL = (ListNodePtr)malloc(sizeof(ListNode));
@@ -37,8 +36,8 @@ int ListInit(ListPtr PL)
 	return 0;
 }
 
-//Èç¹ûÃ»ÕÒµ½Ôò²»¸Ä±äpreµÄÖµ
-//Êä³öÄ¿±ê½ÚµãµÄÇ°ÖÃ½ÚµãÖ¸Õë
+//å¦‚æœæ²¡æ‰¾åˆ°åˆ™ä¸æ”¹å˜preçš„å€¼
+//è¾“å‡ºç›®æ ‡èŠ‚ç‚¹çš„å‰ç½®èŠ‚ç‚¹æŒ‡é’ˆ
 int ListSearch(List L, Node n, ListNodePtr *pre)
 {
 	int i, j, break_flag=1;
@@ -101,7 +100,7 @@ int ListInsert(List L, Node N)
 	return 1;
 }
 
-//ÒÆ¶¯openÔªËØµ½close
+//ç§»åŠ¨openå…ƒç´ åˆ°close
 int RemoveAndInsert(List open, List closed)
 {
 	ListNodePtr s;
@@ -114,7 +113,7 @@ int RemoveAndInsert(List open, List closed)
 }
 /*******************************/
 
-/**************²¿·Ö¼ÆËãÄ£¿é*****************/
+/**************éƒ¨åˆ†è®¡ç®—æ¨¡å—*****************/
 int FindFigure(int fig[3][3],fc *pos,int value)
 {
 	int i, j;
@@ -169,19 +168,19 @@ int NewNode(PNode fa,PNode new,int d,fc zero)
 }
 /*******************************/
 
-/***************ÊäÈëÊä³öÄ£¿é****************/
-//ÎÊÌâÊäÈëº¯Êı
+/***************è¾“å…¥è¾“å‡ºæ¨¡å—****************/
+//é—®é¢˜è¾“å…¥å‡½æ•°
 int ProblemGet(PNode n)
 {
 	int i, j;
-	printf("ÇëÊäÈëÄãµÄ°ËÊıÂëÎÊÌâ(¿Õ¸ñÓÃÁã±íÊ¾£©\n");
+	printf("è¯·è¾“å…¥ä½ çš„å…«æ•°ç é—®é¢˜(ç©ºæ ¼ç”¨é›¶è¡¨ç¤ºï¼‰\n");
 	for (i = 0; i < 3; i++)
 		for (j = 0; j < 3; j++)
 			scanf_s("%d", &n->fig[i][j]);
 	n->g = 0;
 	n->father = NULL;
 	n->f = fValue(n->fig);
-	printf("\nÔ­Í¼Îª£º\n");
+	printf("\nåŸå›¾ä¸ºï¼š\n");
 	for (i = 0; i < 3; i++)
 	{
 		for (j = 0; j < 3; j++)
@@ -193,7 +192,7 @@ int ProblemGet(PNode n)
 	}
 }
 
-//½á¹ûÊä³öº¯Êı
+//ç»“æœè¾“å‡ºå‡½æ•°
 int ResultPrint(Node n)
 {
 	int i, j,NO=0;
@@ -228,7 +227,7 @@ int ResultPrint(Node n)
 		//ListInsert(L, *(L->next->elem.father));
 	}
 
-	printf("\nÒÆ¶¯¹ı³Ì£º\n");
+	printf("\nç§»åŠ¨è¿‡ç¨‹ï¼š\n");
 
 	while (L->next)
 	{
@@ -245,7 +244,7 @@ int ResultPrint(Node n)
 		L->next = L->next->next;
 	}
 
-	printf("\nÒÆ¶¯½áÊø£¡");
+	printf("\nç§»åŠ¨ç»“æŸï¼");
 	return 1;
 }
 
@@ -253,7 +252,7 @@ int ResultPrint(Node n)
 
 int main()
 {
-	//»·¾³³õÊ¼»¯
+	//ç¯å¢ƒåˆå§‹åŒ–
 	int d;
 	List open, closed;
 	Node n,s;
@@ -262,15 +261,15 @@ int main()
 
 	ListInit(&open);
 	ListInit(&closed);
-	//ÎÊÌâ³õÊ¼»¯
+	//é—®é¢˜åˆå§‹åŒ–
 	ProblemGet(&n);
 	ListInsert(open, n);
 	
 	while (open->next)
 	{
-		RemoveAndInsert(open, closed);//È¡×îÓÅ½Úµã
+		RemoveAndInsert(open, closed);//å–æœ€ä¼˜èŠ‚ç‚¹
 		s = closed->next->elem;
-		if (s.f == s.g)//ÊÇ·ñÄ¿±ê
+		if (s.f == s.g)//æ˜¯å¦ç›®æ ‡
 		{
 			ResultPrint(s);
 			ListDestory(open);
@@ -278,12 +277,12 @@ int main()
 			getchar(); getchar();
 			return 1;
 		}
-		FindFigure(s.fig, &zero, 0);//ÕÒµ½Áã½Úµã×ø±ê
-		for (d = 0; d < 4; d++)//ÒÀ´Î·ÖÎöËÄÖÖºóĞøÇé¿ö
+		FindFigure(s.fig, &zero, 0);//æ‰¾åˆ°é›¶èŠ‚ç‚¹åæ ‡
+		for (d = 0; d < 4; d++)//ä¾æ¬¡åˆ†æå››ç§åç»­æƒ…å†µ
 		{
-			if (NewNode(&(closed->next->elem), &n, d,zero))//Èç¹ûĞÂ½ÚµãºÏ·¨
+			if (NewNode(&(closed->next->elem), &n, d,zero))//å¦‚æœæ–°èŠ‚ç‚¹åˆæ³•
 			{
-				if (ListSearch(open,n,&oldpre)||ListSearch(closed,n,&oldpre))//Èç¹û²»ÊÇ³õ´Î·¢ÏÖµÄ½Úµã
+				if (ListSearch(open,n,&oldpre)||ListSearch(closed,n,&oldpre))//å¦‚æœä¸æ˜¯åˆæ¬¡å‘ç°çš„èŠ‚ç‚¹
 				{
 					old = oldpre->next;
 					if (n.g < old->elem.g)
@@ -292,13 +291,13 @@ int main()
 						ListInsert(open, n);
 					}
 				}
-				else//·ñÔò²åÈëopen±í
+				else//å¦åˆ™æ’å…¥openè¡¨
 				{
 					ListInsert(open, n);
 				}
 			}
 		}
 	}
-	printf("ÎŞ½â£¡");
+	printf("æ— è§£ï¼");
 	return 0;
 }
