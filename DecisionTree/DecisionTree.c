@@ -182,7 +182,7 @@ int id3(PTNode T, dataset *set, int size, int *attr)
 
 	size1 = size2 = 0;
 
-	//ÑµÁ·¼¯ÒÑ·ÖÀàÍê³É
+	//è®­ç»ƒé›†å·²åˆ†ç±»å®Œæˆ
 	for (i = 0; i < size; i++)
 	{
 		if (set[0].label != set[i].label)
@@ -193,7 +193,7 @@ int id3(PTNode T, dataset *set, int size, int *attr)
 		T->data = set[0].label;
 		return 1;
 	}
-	//ÊôĞÔÓÃÍê
+	//å±æ€§ç”¨å®Œ
 	for (i = 0; i < 4; i++)
 	{
 		if (attr[i] == 1)
@@ -217,7 +217,7 @@ int id3(PTNode T, dataset *set, int size, int *attr)
 	}
 
 
-	//¿ªÊ¼·ÖÀà
+	//å¼€å§‹åˆ†ç±»
 	for (i = 0; i < 4; i++)
 	{
 		if (attr[i] == 1)
@@ -332,7 +332,7 @@ int c45(PTNode T, dataset *set, int size, int *attr)
 
 	size1 = size2 = 0;
 
-	//ÑµÁ·¼¯ÒÑ·ÖÀàÍê³É
+	//è®­ç»ƒé›†å·²åˆ†ç±»å®Œæˆ
 	for (i = 0; i < size; i++)
 	{
 		if (set[0].label != set[i].label)
@@ -343,7 +343,7 @@ int c45(PTNode T, dataset *set, int size, int *attr)
 		T->data = set[0].label;
 		return 1;
 	}
-	//ÊôĞÔÓÃÍê
+	//å±æ€§ç”¨å®Œ
 	for (i = 0; i < 4; i++)
 	{
 		if (attr[i] == 1)
@@ -367,7 +367,7 @@ int c45(PTNode T, dataset *set, int size, int *attr)
 	}
 
 
-	//¿ªÊ¼·ÖÀà
+	//å¼€å§‹åˆ†ç±»
 	for (i = 0; i < 4; i++)
 	{
 		if (attr[i] == 1)
